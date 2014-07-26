@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- [base on index.html,for understand the MVC of AngularJS  -->
+<!--
+      这一节里你可以看到，view :   <div ng-controller="nakeController">
+                        model:  {{author.name}} ; {{"as a " + author.title + " working for " + author.company}}
+                        controller: function nakeController($scope)
+
+controller 是处理数据，并同步更新的核心
+-->
+<html lang="en" ng-app>
+    <head>
+        <title>AngularJS first demo </title>
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-controller="nakeController">
+            <h1>{{author.name}}</h1>
+            <p>{{"as a " + author.title + " working for " + author.company}}</p>
+        </div>
+
+      <script type="text/javascript">
+          function nakeController($scope){
+                $scope.author = {
+                name:"zhangdong",
+                title:"serior front-end engineer",
+                company:"Alibaba"
+              }
+          };
+
+      </script>
+    </body>
+</html>

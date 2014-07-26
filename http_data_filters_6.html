@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- [base on http_loaddata_min_5.html,for  create first app  -->
+<!--
+     {{ expression | filter }}
+    {{ expression | filter1 | filter2 | ... }}  chaining
+    {{ expression | filter:argument1:argument2:... }}  filter can have arguments
+
+-->
+<html lang="en" ng-app="myApp4">
+    <head>
+        <title>AngularJS first demo </title>
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+        <script type="text/javascript" src="lib/js/controller4.js"></script>
+        <link rel="stylesheet" href="css/style.css" >
+    </head>
+    <body>
+        <div class="main" ng-controller="myController4">
+           <ul class="artistlist">
+                <li class="artist cf" ng-repeat="item in artists | limitTo:5">
+                    <img ng-src="/images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}" >
+                    <!--这个img  里面如果使用src，会报错，因为页面载入，在Angular还未读取
+                        {{item.shortname}}  之前，html已经被parser解析，并根据这个地址去取图片了，
+                        但是这个地址并不是图片而是一个需要被重新定义的holder，所以需要使用ng-src
+                    -->
+                    <div class="info">
+                        <h2>{{item.name | uppercase}}</h2>
+                        <h3>{{item.reknow}}</h3>
+                    </div>
+               </li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- [base on http_loaddata_4.html,for  create first app  -->
+<!--
+    如果你使用文件系统访问这个文件会报如下错误chrome下（console查看）：
+XMLHttpRequest cannot load file:///lib/js/data.json. Cross origin requests are only supported for HTTP.
+解决办法：
+MAC机器下，打开终端输入：
+$ open -a Google\ Chrome --args --disable-web-security
+
+for lINUX
+$ google-chrome --disable-web-security
+
+for pc windows
+chrome.exe --disable-web-security
+
+
+js 项目发布时，需要minification，所以
+-->
+<html lang="en" ng-app="myApp4">
+    <head>
+        <title>AngularJS first demo </title>
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+        <script type="text/javascript" src="lib/js/controller4.js"></script>
+        <link rel="stylesheet" href="css/style.css" >
+    </head>
+    <body>
+        <div class="main" ng-controller="myController4">
+           <ul class="artistlist">
+                <li class="artist cf" ng-repeat="item in artists">
+                    <img ng-src="/images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}" >
+                    <!--这个img  里面如果使用src，会报错，因为页面载入，在Angular还未读取
+                        {{item.shortname}}  之前，html已经被parser解析，并根据这个地址去取图片了，
+                        但是这个地址并不是图片而是一个需要被重新定义的holder，所以需要使用ng-src
+                    -->
+                    <div class="info">
+                        <h2>{{item.name}}</h2>
+                        <h3>{{item.reknow}}</h3>
+                    </div>
+               </li>
+            </ul>
+        </div>
+    </body>
+</html>

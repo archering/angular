@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- [base on http_data_filters_6.html,for  create first app  -->
+<!--
+     {{ expression | filter }}
+    {{ expression | filter1 | filter2 | ... }}  chaining
+    {{ expression | filter:argument1:argument2:... }}  filter can have arguments
+    filter 表示两个意思，一个是 滤镜，一个是过滤
+
+    用户选择的情况下，动态的过滤并显示
+-->
+<html lang="en" ng-app="myApp4">
+    <head>
+        <title>AngularJS first demo </title>
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+        <script type="text/javascript" src="lib/js/controller4.js"></script>
+        <link rel="stylesheet" href="css/style.css" >
+    </head>
+    <body>
+        <div class="main" ng-controller="myController4">
+            <div class="search">
+                <h1>Artists Directory</h1>
+                <label>search:</label>
+                <input type="text" placeholder="type a letter to findout" ng-model="query">
+
+                <label class="formgroup">by:
+                    <select ng-model="artistsOrder">
+                        <option value="name" selected>Name</option>
+                        <option value="reknow">Reknow</option>
+                    </select>
+                </label>
+
+                <label class="formgroup">Ascend
+                    <input type="radio" ng-model="direction"  name="direction" checked>
+                </label>
+                <label class="formgroup">Descend
+                    <input type="radio"   ng-model="direction"  name="direction" value="reverse">
+                </label>
+
+                <label class="formgroup">limit:
+                    <input type="number" max={{max}} min="1" ng-model="limi" value="1">
+                </label>
+                 <label class="formgroup">Uppercase:
+                    <input type="checkbox"   ng-model="upper" value="uppercase">
+                </label>
+            </div>
+           <ul class="artistlist">
+                <li class="artist cf" ng-repeat="item in artists | filter:query | orderBy:artistsOrder:direction | limitTo:limi" >
+                    <img ng-src="/images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}" >
+                    <!--这个img  里面如果使用src，会报错，因为页面载入，在Angular还未读取
+                        {{item.shortname}}  之前，html已经被parser解析，并根据这个地址去取图片了，
+                        但是这个地址并不是图片而是一个需要被重新定义的holder，所以需要使用ng-src
+                    -->
+                    <div class="info">
+                        <h2>{{item.name | filter:upper}}</h2>
+                        <h3>{{item.reknow}}</h3>
+                        <h4>{{item.bio}}</h4>
+                    </div>
+               </li>
+            </ul>
+        </div>
+    </body>
+</html>

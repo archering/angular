@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- [base on dynamic_filter_7.html,for  create first app  -->
+<!--
+    AngularJS 是通过一系列 ng-指令的注解形式，架构整个应用程序的
+    他的MVC 实现，实际上是，单页面上得一块<div></div>即是一个view，
+    这个view又通过{{}}的形式和数据进行双向绑定，
+    剩下的事情交给controller进行处理.
+
+    既然如此，我们把这个应用程序构建的更加模块化，
+首先，入口应用程序，应该是一个框架，具体的view state应该分散到各个子html  partial
+中，需要得时候加入，然后组装。
+
+
+deep link， 浏览器级别的 back，forward 不是很好用，需要跳转，请求不同的页面，页面载入的好坏
+影响用户体验。为了更好的展现页面，更好的用户体验，我们希望，在页面不刷新的情况下，更具具体的标记，
+展现不同的内容，就像跳转了页面的效果一样。
+e.g.
+taobao.com/javascript/#alerts
+上面这个地址，当出现 #alerts  页面变化到一个状态state
+
+使用 angular-route.js  库
+-->
+<html lang="en" ng-app="myApp">
+    <head>
+        <title>AngularJS first demo </title>
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+        <script type="text/javascript" src="lib/angular/angular-route.min.js"></script>
+        <script type="text/javascript" src="lib/js/app.js">/**bootstrap 的引导交给app.js **/</script>
+        <script type="text/javascript" src="lib/js/controller5.js"></script>
+        <link rel="stylesheet" href="css/style.css" >
+    </head>
+    <body>
+        <div class="main" ng-view><!-- 入口里面只保留，展示view的区域就行-->
+        </div>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- [base on angular_MVC.html,for  deep understand the MVC of AngularJS  -->
+<!--
+    逻辑处理放到module里面，使应用程序更简洁，更已维护。
+-->
+<html lang="en" ng-app="myApp">
+    <head>
+        <title>AngularJS first demo </title>
+        <meta charset="utf-8" >
+        <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+        <script type="text/javascript" src="lib/js/controller.js"></script>
+    </head>
+    <body>
+        <div ng-controller="myController">
+            <h1>{{author.name}}</h1>
+            <p>{{"as a " + author.title + " working for " + author.company}}</p>
+        </div>
+    </body>
+</html>
